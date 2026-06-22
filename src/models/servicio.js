@@ -34,14 +34,14 @@ const servicioSchema = new Schema(
     categoria: {
       type: String,
       required: true,
-      enum: ["Desarrollo Web", "Backend & API", "Consultoria"],
+      enum: ["Desarrollo Web", "Backend & API", "Consultoria"] //categorias disponibles para elegir
     },
   },
   {
-    timestamps: true,
+    timestamps: true //sirve para agregar una fecha y hora de creacion y actualizacion
   },
 );
 
-const Servicio = mongoose.model('servicio', servicioSchema)
+const Servicio = mongoose.model('servicio', servicioSchema) //sirve para dar de alta un servicio
 
 export default Servicio
