@@ -27,6 +27,19 @@ export const listarServicio = async(req,res)=>{
         res.status(200).json(servicios)
     } catch (error) {
         console.error(error)
-        res.status(500).json({mensaje: 'Ocurrio un error al intentar crear un servicio'})
+        res.status(500).json({mensaje: 'Ocurrio un error al intentar buscar un servicio'})
+    }
+}
+export const buscarServicioPorID = async(req,res)=>{
+    try {
+        console.log(req.params.id)
+        const servicioBuscado = await Servicio.findById(req.params.id)
+        if(!servicioBuscado){
+            return res.status(404).json({mensaje: 'No se encontró un servicio con el id enviado'})
+        }
+        res.status(200).json(servicioBuscado)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({mensaje: 'Ocurrio un error al intentar buscar un servicio por id'})
     }
 }
