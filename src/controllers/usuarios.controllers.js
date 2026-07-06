@@ -21,3 +21,15 @@ export const listarUsuario = async (req, res) =>{
     }
 }
 
+export const borrarUsuarioPorID = async (req,res)=>{
+    try {
+        const usuarioEliminado = await Usuario.findByIdAndDelete(req.params.id)
+        if (!usuarioEliminado) {
+            return res.status(404).json({mensaje: 'Usuario no encontrado'})
+        }
+        res.status(200).json({mensaje: 'Usuario eliminado con exito'})
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({mensaje: 'Ocurrio un error al intentar eliminar un usuario'})
+    }
+}
