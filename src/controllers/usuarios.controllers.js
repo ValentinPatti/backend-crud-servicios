@@ -33,3 +33,16 @@ export const borrarUsuarioPorID = async (req,res)=>{
         res.status(500).json({mensaje: 'Ocurrio un error al intentar eliminar un usuario'})
     }
 }
+
+export const editarUsuarioPorID = async (req,res)=>{
+    try {
+        const usuarioEditado = await Usuario.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        if (!usuarioEditado) {
+            res.status(404).json({mensaje: 'Usuario no encontrado'})
+        }
+        res.status(200).json({mensaje: 'Usuario editado exitosamente'})
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({mensaje: 'Ocurrio un error al intentar editar un usuario'})
+    }
+}
