@@ -16,6 +16,11 @@ const reglasServicio = [
       if (!servicioExistente) {
         return true;
       }
+      //verificamos si estamos editando
+      if (req.params?.id && servicioExistente._id.toString() === req.params.id) {
+        return true
+      }
+
       throw new Error("El servicio ya existe en la base de datos");
     }),
   body("precio")
