@@ -21,6 +21,19 @@ export const listarUsuario = async (req, res) =>{
     }
 }
 
+export const buscarUsuarioPorID = async(req,res)=>{
+    try {
+        const usuarioBuscado = await Usuario.findById(req.params.id)
+        if(!usuarioBuscado){
+            return res.status(404).json({mensaje: 'No se encontró un usuario con el id enviado'})
+        }
+        res.status(200).json(usuarioBuscado)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({mensaje: 'Ocurrio un error al intentar buscar un usuario por id'})
+    }
+}
+
 export const borrarUsuarioPorID = async (req,res)=>{
     try {
         const usuarioEliminado = await Usuario.findByIdAndDelete(req.params.id)

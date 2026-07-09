@@ -4,6 +4,6 @@ import { borrarUsuarioPorID, crearUsuario, editarUsuarioPorID, listarUsuario } f
 const router = Router()
 
 router.route('/').post(crearUsuario).get(listarUsuario)
-router.route('/:id').delete(borrarUsuarioPorID).put(editarUsuarioPorID)
+router.route('/:id').get(borrarUsuarioPorID).delete(borrarUsuarioPorID).put(editarUsuarioPorID)
 
 export default router
