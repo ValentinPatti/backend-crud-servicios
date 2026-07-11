@@ -36,3 +36,10 @@ export const validarUsuario = [
   .isIn(["admin", "cliente"])
   .withMessage("La categoria debe ser una de las siguientes opciones: admin, cliente")
 ];
+
+export const validacionIDUsuario = [
+  param("id")
+    .isMongoId()
+    .withMessage("El id enviado no tiene el formato de ID de MongoDB"),
+  resultadoValidacion,
+];
