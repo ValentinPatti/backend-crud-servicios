@@ -10,6 +10,8 @@ export const validarUsuario = [
   body("email")
     .isEmail()
     .withMessage("El email debe ser de tipo email")
+    .matches(/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/)
+    .withMessage("El email debe tener los caracteres permitidos")
     .custom(async (valor, { req }) => {
       const emailExistente = await Usuario.findOne({
         email: valor,
@@ -23,7 +25,10 @@ export const validarUsuario = [
     }),
   body("password")
   .isString()
+  .withMessage("La contraseña debe ser de tipo string")
+  .trim()
+  .matches(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,}$/)
   .withMessage("La contraseña debe tener los caracteres permitidos")
-  .trim(),
+  ,
   body("rol"),
 ];
