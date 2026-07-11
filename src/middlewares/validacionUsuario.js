@@ -30,5 +30,9 @@ export const validarUsuario = [
   .matches(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,}$/)
   .withMessage("La contraseña debe tener los caracteres permitidos")
   ,
-  body("rol"),
+  body("rol")
+  .isString()
+  .withMessage("La categoria debe ser de tipo string")
+  .isIn(["admin", "cliente"])
+  .withMessage("La categoria debe ser una de las siguientes opciones: admin, cliente")
 ];
